@@ -1,7 +1,7 @@
 ---
 title: "Lab 11 - Grading the professor, Pt. 2"
 subtitle: "Modeling with multiple predictors"
-author: "Your Name"
+author: "Dania Habib"
 output: 
   tufte::tufte_handout:
     latex_engine: xelatex
@@ -110,7 +110,7 @@ glimpse(evals)
 
 **How many observations are in the dataset?** Use inline code to report.
 
-**Your answer:** The dataset has _____ observations.
+**Your answer:** The dataset has 463 observations.
 
 **✓ Checkpoint:** You should see 463 observations and 23 variables.
 
@@ -122,11 +122,11 @@ glimpse(evals)
 
 Fit a linear model (one you have fit in Lab 10): `score_bty_fit`, predicting average professor evaluation `score` based on average beauty rating (`bty_avg`) only. Write the linear model, and note the R² and the adjusted R².
 
-```{r fit-score-bty, eval = FALSE}
+```{r fit-score-bty, eval = TRUE}
 # Remember to change eval=FALSE to eval=TRUE!
 score_bty_fit <- linear_reg() %>%
   set_engine("lm") %>%
-  fit(score ~ ___, data = evals)
+  fit(score ~ bty_avg, data = evals)
 
 # View coefficients
 tidy(score_bty_fit)
@@ -137,11 +137,11 @@ glance(score_bty_fit)
 
 **Write the linear model equation:**
 
-$$\widehat{score} = \_\_\_ + \_\_\_ \times bty\_avg$$
+$$\widehat{score} = 3.88033795 + 0.06663704\times bty\_avg$$
 
-**R² value:** _____
+**R² value:** 0.03502226
 
-**Adjusted R² value:** _____
+**Adjusted R² value:** 0.03292903
 
 🧶 ✅ ⬆️ **Knit, commit with message "Completed Exercises 1-2", and push your changes.**
 
@@ -153,11 +153,11 @@ $$\widehat{score} = \_\_\_ + \_\_\_ \times bty\_avg$$
 
 Fit a linear model (one you have fit in Lab 10): `score_bty_gen_fit`, predicting average professor evaluation `score` based on average beauty rating (`bty_avg`) and `gender`. Write the linear model, and note the R² and the adjusted R².
 
-```{r fit-score-bty-gender, eval = FALSE}
+```{r fit-score-bty-gender, eval = TRUE}
 # Remember to change eval=FALSE to eval=TRUE!
 score_bty_gen_fit <- linear_reg() %>%
   set_engine("lm") %>%
-  fit(score ~ ___ + ___, data = evals)
+  fit(score ~ bty_avg + gender, data = evals)
 
 # View coefficients
 tidy(score_bty_gen_fit)
@@ -168,11 +168,11 @@ glance(score_bty_gen_fit)
 
 **Write the linear model equation:**
 
-$$\widehat{score} = \_\_\_ + \_\_\_ \times bty\_avg + \_\_\_ \times gendermale$$
+$$\widehat{score} = 3.74733824 + 0.07415537 \times bty\_avg + 0.17238955 \times gendermale$$
 
-**R² value:** _____
+**R² value:** 0.05912279
 
-**Adjusted R² value:** _____
+**Adjusted R² value:** 0.05503202
 
 ------------------------------------------------------------------------
 
@@ -182,15 +182,15 @@ Interpret the slopes and intercept of `score_bty_gen_fit` in context of the data
 
 **Interpret the intercept:**
 
-The intercept represents _______________________________________________________
+The intercept represents the expected evaluation score for a female professor with a beauty rating of 0.
 
 **Interpret the slope for bty_avg:**
 
-Holding gender constant, for every one unit increase in beauty rating, _______
+Holding gender constant, for every one unit increase in beauty rating, the expected evaluation score increases by about 0.074.
 
 **Interpret the slope for gendermale:**
 
-Holding beauty rating constant, male professors are expected to score ________
+Holding beauty rating constant, male professors are expected to score 0.172 points higher than female professors.
 
 **Important:** In multiple regression, we interpret each coefficient "holding all other variables constant."
 
@@ -202,7 +202,7 @@ What percent of the variability in `score` is explained by the model `score_bty_
 
 **Use the R² value from Exercise 3.**
 
-Approximately _____% of the variability in professor evaluation scores is explained by beauty rating and gender.
+Approximately 5.91% of the variability in professor evaluation scores is explained by beauty rating and gender.
 
 ------------------------------------------------------------------------
 
@@ -224,7 +224,7 @@ $$\widehat{score} = (b_0 + b_2) + b_1 \times bty\_avg$$
 
 **With your actual values:**
 
-$$\widehat{score} = \_\_\_ + \_\_\_ \times bty\_avg$$
+$$\widehat{score} = 3.74733824 + 0.07415537 \times bty\_avg$$
 
 🧶 ✅ ⬆️ **Knit, commit with message "Completed Exercises 3-6", and push your changes.**
 

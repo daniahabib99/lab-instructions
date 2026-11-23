@@ -1,7 +1,7 @@
 ---
 title: "Lab 12 - Smoking during pregnancy"
 subtitle: "Simulation based inference"
-author: "Your Name"
+author: "Dania Habib"
 output: 
   tufte::tufte_handout:
     latex_engine: xelatex
@@ -125,11 +125,11 @@ glimpse(ncbirths)
 
 **Your answers:**
 
-**What are the cases?** Each case represents _______________________________
+**What are the cases?** Each case represents one birth recorded in the state of North Carolina.
 
 **How many cases are there?** Use inline code to report the number.
 
-There are _____ cases in our sample.
+There are `r nrow(ncbirths)` cases in our sample.
 
 ------------------------------------------------------------------------
 
@@ -138,7 +138,7 @@ There are _____ cases in our sample.
 The first step in the analysis of a new dataset is getting acquainted with the data. Make summaries of the variables in your dataset, determine which variables are categorical and which are numerical. For numerical variables, are there outliers? If you aren't sure or want to take a closer look at the data, make a graph.
 
 **Create summary statistics:**
-```{r summary-stats, eval = FALSE}
+```{r summary-stats, eval = TRUE}
 # Remember to change eval=FALSE to eval=TRUE!
 
 # For numerical variables
@@ -156,28 +156,38 @@ ncbirths %>%
 
 **Categorical variables:** 
 
-
+- mature
+- premie
+- marital
+- lowbirthweight
+- gender
+- habit
+- whitemom
 
 **Numerical variables:**
 
-
+- fage
+- mage 
+- weeks
+- visits
+- gained
+- weight
 
 **Check for outliers in key variables:**
-```{r check-outliers, eval = FALSE, fig.alt = "___"}
+```{r check-outliers, eval = FALSE, fig.alt = "Boxplot showing the distribution of baby birth weights"}
 # Remember to change eval=FALSE to eval=TRUE!
 # Remember to fill in fig.alt above with a short description of what this plot shows!
 
 # Boxplot for weight
-ggplot(data = ncbirths, aes(y = ___)) +
+ggplot(data = ncbirths, aes(y = weight)) +
   geom_boxplot() +
-  labs(title = "___")
+  labs(title = "Distribution of baby birth weights")
 
 # Boxplot for other numerical variables as needed
 ```
 
 **Are there outliers?**
-
-
+Yes, there are some outliers.
 
 🧶 ✅ ⬆️ **Knit, commit with message "Completed Exercises 1-2", and push your changes.**
 

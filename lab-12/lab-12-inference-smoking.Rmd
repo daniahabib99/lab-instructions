@@ -408,11 +408,11 @@ Write the hypotheses for testing if the average weights of babies born to smokin
 
 **Null hypothesis (H₀):**
 
-
+The average birth weights of babies born to smoking and nonsmoking mothers are equal.
 
 **Alternative hypothesis (Hₐ):**
 
-
+The average birth weights of babies born to smoking and nonsmoking mothers are different.
 
 **Hint:** Since we're testing for "different" (not specifically higher or lower), this is a two-sided test.
 
@@ -423,27 +423,27 @@ Write the hypotheses for testing if the average weights of babies born to smokin
 Are the conditions necessary for conducting simulation-based inference satisfied? Explain your reasoning, noting anything that's different here from Exercise 4 (e.g., you now have two groups instead of one).
 
 **Sample size in each group:**
-```{r check-habit-counts, eval = FALSE}
+```{r check-habit-counts, eval = TRUE}
 # Remember to change eval=FALSE to eval=TRUE!
 ncbirths_habitgiven %>%
   count(habit)
 ```
 
-Nonsmokers: _____ observations
-Smokers: _____ observations
+Nonsmokers: 873 observations
+Smokers: 126 observations
 
 **Are these large enough?** 
 
 **Conclusion:**
 
-
+Yes, they are, since both groups have large sample sizes, with 873 nonsmokers and 126 smokers, which are both greater than 30.
 
 ------------------------------------------------------------------------
 
 ## Exercise 10
 
 Run the appropriate hypothesis test, calculate the p-value, and interpret the results in context of the data and the hypothesis test.
-```{r hypothesis-test-habit, eval = FALSE, fig.alt = "___"}
+```{r hypothesis-test-habit, eval = FALSE, fig.alt = "Null distribution of the difference in mean baby weights between nonsmokers and smokers"}
 # Remember to change eval=FALSE to eval=TRUE!
 # Remember to fill in fig.alt above with a short description of what this plot shows!
 
@@ -461,7 +461,7 @@ null_dist_habit <- ncbirths_habitgiven %>%
 
 # Visualize
 visualize(null_dist_habit) +
-  shade_p_value(obs_stat = obs_diff, direction = "___") +
+  shade_p_value(obs_stat = obs_diff, direction = "two-sided") +
   labs(
     title = "Null distribution of difference in mean weights",
     x = "Difference in mean weight (nonsmoker - smoker)",
@@ -470,22 +470,21 @@ visualize(null_dist_habit) +
 
 # Calculate p-value
 null_dist_habit %>%
-  get_p_value(obs_stat = obs_diff, direction = "___")
+  get_p_value(obs_stat = obs_diff, direction = "two-sided")
 ```
 
-**The observed difference is:** _____ pounds
+**The observed difference is:** 0.315543 pounds
 
-**The p-value is:** _____
+**The p-value is:** 0.0306	
 
 **Interpretation:**
 
-
-------------------------------------------------------------------------
+At a significance level of 0.05, we reject the null hypothesis because the p-value of 0.0306 is less than 0.05. Therefore, there is statistically significant evidence that the average birth weights of babies born to smoking and nonsmoking mothers are different. Babies born to nonsmoking mothers weigh approximately 0.316 pounds more on average.
 
 ## Exercise 11
 
 Construct a 95% confidence interval for the difference between the average weights of babies born to smoking and non-smoking mothers.
-```{r ci-habit, eval = FALSE, fig.alt = "___"}
+```{r ci-habit, eval = TRUE, fig.alt = "Bootstrap distribution of the difference in mean baby weights between nonsmokers and smokers, showing the 95% confidence interval."}
 # Remember to change eval=FALSE to eval=TRUE!
 # Remember to fill in fig.alt above with a short description of what this plot shows!
 
@@ -497,7 +496,7 @@ boot_dist_habit <- ncbirths_habitgiven %>%
 
 # Get confidence interval
 ci <- boot_dist_habit %>%
-  get_confidence_interval(level = ___, type = "percentile")
+  get_confidence_interval(level = 0.95, type = "percentile")
 
 ci
 
@@ -511,11 +510,11 @@ visualize(boot_dist_habit) +
   )
 ```
 
-**The 95% confidence interval is:** (_____, _____)
+**The 95% confidence interval is:** (0.06025987, 0.5738321)
 
 **Interpretation in context:**
 
-We are 95% confident that 
+We are 95% confident that the average birth weight of babies born to nonsmoking mothers is between 0.0603 and 0.5738 pounds higher than the average birth weight of babies born to smoking mothers.
 
 
 🧶 ✅ ⬆️ **Knit, commit with message "Completed Exercises 8-11", and push your changes.**

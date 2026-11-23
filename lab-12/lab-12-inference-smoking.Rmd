@@ -343,45 +343,45 @@ Consider the possible relationship between a mother's smoking habit and the weig
 ## Exercise 6
 
 Make side-by-side boxplots displaying the relationship between `habit` and `weight`. What does the plot highlight about the relationship between these two variables?
-```{r boxplot-habit-weight, eval = FALSE, fig.alt = "___"}
+```{r boxplot-habit-weight, eval = TRUE, fig.alt = "Side-by-side boxplots comparing baby birth weights for smoking and nonsmoking mothers"}
 # Remember to change eval=FALSE to eval=TRUE!
 # Remember to fill in fig.alt above with a short description of what this plot shows!
-ggplot(data = ncbirths, aes(x = ___, y = ___)) +
+ggplot(data = ncbirths, aes(x = habit, y = weight)) +
   geom_boxplot() +
   labs(
-    title = "___",
-    x = "___",
-    y = "___"
+    title = "Baby weight by mother;s smoking habit",
+    x = "mother's smoking habit",
+    y = "baby weight"
   )
 ```
 
 **What does the plot show about the relationship?**
 
-
+The plot shows a weak negative relationship between smoking and baby birth weight.
 
 **Which group has higher median weight?**
 
-
+The nonsmoker group has a slightly heigher median baby weight.
 
 ------------------------------------------------------------------------
 
 ## Exercise 7
 
 Before moving forward, save a version of the dataset omitting observations where there are NAs for `habit`. You can call this version `ncbirths_habitgiven`.
-```{r remove-na-habit, eval = FALSE}
+```{r remove-na-habit, eval = TRUE}
 # Remember to change eval=FALSE to eval=TRUE!
 ncbirths_habitgiven <- ncbirths %>%
-  filter(!is.na(___))
+  filter(!is.na(habit))
 
 # Check how many observations we have
 nrow(ncbirths_habitgiven)
 ```
 
-**How many observations remain after removing NAs?** _____
+**How many observations remain after removing NAs?** 999
 
 The box plots show how the medians of the two distributions compare, but we can also compare the means of the distributions using the following to first group the data by the `habit` variable, and then calculate the mean `weight` in these groups:
 
-```{r habit-means, eval = FALSE}
+```{r habit-means, eval = TRUE}
 # Remember to change eval=FALSE to eval=TRUE after completing the code above
 ncbirths_habitgiven %>%
   group_by(habit) %>%
@@ -390,11 +390,13 @@ ncbirths_habitgiven %>%
 
 **Observed difference in means:**
 
-Mean weight for nonsmokers: _____ pounds
-Mean weight for smokers: _____ pounds
-Difference: _____ pounds
+Mean weight for nonsmokers: 7.144273 pounds
+Mean weight for smokers: 6.828730 pounds
+Difference: 0.315543 pounds
 
 **There is an observed difference, but is this difference statistically significant?**
+
+We cannot determine whether the difference is statistically significant just by comparing the means. We need to conduct a hypothesis test to calculate the p-value.
 
 🧶 ✅ ⬆️ **Knit, commit with message "Completed Exercises 6-7", and push your changes.**
 
